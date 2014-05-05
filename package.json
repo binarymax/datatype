@@ -1,6 +1,6 @@
 {
   "name": "datatype",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Datatype validation and casting library",
   "main": "datatype.js",
   "dependencies": {
