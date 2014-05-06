@@ -22,15 +22,18 @@ var DataTypeClass = function(datatype,description,required,defaultvalue) {
 	self.description = description||datatype.type;
 	self.required = required?true:false;
 	self.defaultvalue = defaultvalue||null;
+	Object.defineProperty(self,"istype",{get:function(){return true;}});
 };
 
 // --------------------------------------------------------------------------
 // Extended DataType creation method
 //  params:
 //    @datatype - the type object to create. Properties:
-//              - "name"     - the name of the datatype  (required)
-//				- "validate" - the validation function   (optional)
-//				- "cast"     - the type casting function (optional)
+//              - "name"       - the name of the datatype           (required)
+//				- "definition" - the textual definition             (optional)
+//				- "validate"   - the validation function            (optional)
+//				- "cast"       - the type casting function          (optional)
+//				- "defaultvalue" - the default value to set         (optional)
 var type = function(datatype) {
 	
 	var type_not_found = "ERROR - A datatype was not provided";
@@ -54,7 +57,7 @@ var type = function(datatype) {
 // Extended DataType creation method
 //  params:
 //    @datatypes - an array of type objects to create
-var add = DataType.add = function(datatypes) {
+var add = exports.add = function(datatypes) {
 
 	var types_not_found = "ERROR - An array of datatypes was not provided";
 	if (typeof datatypes !== 'object') throw new Error(types_not_found);
@@ -71,7 +74,7 @@ var add = DataType.add = function(datatypes) {
 // Verifies if an object is a datatype
 //  params:
 //    @object - The object to check
-var isType = DataType.isType = function(object) {
+var isType = exports.isType = function(object) {
 	return (object && object instanceof DataTypeClass) ? true : false;
 };
 
